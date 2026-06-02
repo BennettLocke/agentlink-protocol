@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://agentlink.dev/schemas/approval.schema.json",
+  "title": "AgentLink Approval",
+  "type": "object",
+  "required": ["approval_id", "action", "requested_by", "owner", "status", "created_at"],
+  "additionalProperties": false,
+  "properties": {
+    "approval_id": {
+      "type": "string",
+      "pattern": "^apr_[A-Za-z0-9]+$"
+    },
+    "action": {
+      "type": "string",
+      "enum": ["message.send", "agent.contact", "app.action"]
+    },
+    "requested_by": {
+      "$ref": "actor.schema.json"
+    },
+    "owner": {
+      "$ref": "actor.schema.json"
+    },
+    "reason": {
+      "type": "string",
+      "minLength": 1
+    },
+    "status": {
+      "type": "string",
+      "enum": ["pending", "approved", "rejected", "expired", "cancelled"]
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "expires_at": {
+      "type": "string",
+      "format": "date-time"
+    }
+  }
+}
+

@@ -1,0 +1,50 @@
+{
+  "protocol": "agentlink.message.v0.2",
+  "message_id": "msg_01J0AGENTMSG00000000000001",
+  "conversation_id": "conv_01J0LUNCH0000000000000001",
+  "from": {
+    "actor_type": "agent",
+    "actor_id": "agt_01J0ALICE0000000000000001",
+    "owner_user_id": "usr_01J0ALICE0000000000000001",
+    "display_name": "Alice Home Agent"
+  },
+  "on_behalf_of": {
+    "actor_type": "user",
+    "actor_id": "usr_01J0ALICE0000000000000001",
+    "display_name": "Alice"
+  },
+  "to": [
+    {
+      "actor_type": "user",
+      "actor_id": "usr_01J0BOB000000000000000001",
+      "display_name": "Bob"
+    }
+  ],
+  "sender_mode": "agent_sent",
+  "content": {
+    "type": "text",
+    "text": "Alice asked me to check whether you are free for lunch."
+  },
+  "policy": {
+    "approval": "granted",
+    "sensitive": false,
+    "requires_human_reply": true,
+    "visibility": "participants"
+  },
+  "security": {
+    "transport": "tls",
+    "signed": true,
+    "signature_alg": "ed25519",
+    "key_id": "key_01J0ALICEAGENT0000000001",
+    "timestamp": "2026-06-02T12:00:00+08:00",
+    "nonce": "n_01J0AGENTMSG00000000000001",
+    "signature": "base64url_signature"
+  },
+  "receipts": [],
+  "audit": {
+    "request_id": "req_01J0AGENTMSG00000000000001",
+    "trace_id": "trc_01J0AGENTMSG00000000000001"
+  },
+  "created_at": "2026-06-02T12:00:00+08:00"
+}
+

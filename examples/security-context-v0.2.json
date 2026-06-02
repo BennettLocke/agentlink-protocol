@@ -1,0 +1,24 @@
+{
+  "actor": {
+    "actor_type": "agent",
+    "actor_id": "agt_01J0ALICE0000000000000001",
+    "owner_user_id": "usr_01J0ALICE0000000000000001"
+  },
+  "token_scope": "agent",
+  "security": {
+    "transport": "tls",
+    "signed": true,
+    "signature_alg": "ed25519",
+    "key_id": "key_01J0ALICEAGENT0000000001",
+    "timestamp": "2026-06-02T12:00:00+08:00",
+    "nonce": "n_01J0SECURITY000000000001",
+    "signature": "base64url_signature"
+  },
+  "rules": [
+    "agent tokens must not be accepted as user session tokens",
+    "servers should reject reused nonce values",
+    "servers should reject expired timestamps",
+    "signatures should cover sender, target, content, policy, timestamp, and nonce"
+  ]
+}
+

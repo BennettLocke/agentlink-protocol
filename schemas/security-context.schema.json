@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://agentlink.dev/schemas/security-context.schema.json",
+  "title": "AgentLink Security Context",
+  "type": "object",
+  "required": ["transport", "timestamp", "nonce"],
+  "additionalProperties": false,
+  "properties": {
+    "transport": {
+      "type": "string",
+      "enum": ["tls"]
+    },
+    "signed": {
+      "type": "boolean"
+    },
+    "signature_alg": {
+      "type": "string",
+      "enum": ["ed25519", "none"]
+    },
+    "key_id": {
+      "type": "string",
+      "pattern": "^key_[A-Za-z0-9]+$"
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "nonce": {
+      "type": "string",
+      "minLength": 8
+    },
+    "signature": {
+      "type": "string",
+      "minLength": 1
+    }
+  }
+}
+

@@ -1,0 +1,200 @@
+openapi: 3.1.0
+info:
+  title: AgentLink Protocol API
+  version: 0.2.0-draft
+  description: Draft HTTP API for unified human, agent, app, and device communication.
+servers:
+  - url: https://api.agentlink.example/v1
+    description: Example production endpoint
+  - url: http://localhost:3100/v1
+    description: Local development endpoint
+paths:
+  /messages:
+    post:
+      summary: Send a message using the v0.2 unified actor-aware envelope
+      description: Future unified route. v0.2 implementations may continue exposing the v0.1 split routes while normalizing messages into this envelope.
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/MessageEnvelope"
+      responses:
+        "200":
+          description: Standard AgentLink response envelope
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResponseEnvelope"
+        "403":
+          description: Permission denied or approval required
+  /messages/send:
+    post:
+      summary: v0.1-compatible human send route
+      description: Servers may keep this route and internally map it to the v0.2 message envelope.
+      security:
+        - bearerAuth: []
+      responses:
+        "200":
+          description: Standard AgentLink response envelope
+  /agent/messages/send:
+    post:
+      summary: v0.1-compatible agent send route
+      description: Servers may keep this route and internally map it to the v0.2 message envelope.
+      security:
+        - bearerAuth: []
+      responses:
+        "200":
+          description: Standard AgentLink response envelope
+        "403":
+          description: Permission denied or approval required
+  /approvals/{approval_id}/approve:
+    post:
+      summary: Approve a pending agent action
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: approval_id
+          in: path
+          required: true
+          schema:
+            type: string
+            pattern: "^apr_[A-Za-z0-9]+$"
+      responses:
+        "200":
+          description: Standard AgentLink response envelope
+  /sync:
+    get:
+      summary: Sync missed events and messages visible to the authenticated actor
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: cursor
+          in: query
+          required: false
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Standard AgentLink response envelope
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+  schemas:
+    Actor:
+      type: object
+      required: [actor_type, actor_id]
+      additionalProperties: false
+      properties:
+        actor_type:
+          type: string
+          enum: [user, agent, app, device, system]
+        actor_id:
+          type: string
+          pattern: "^(usr|agt|app|dev|sys)_[A-Za-z0-9]+$"
+        owner_user_id:
+          type: string
+          pattern: "^usr_[A-Za-z0-9]+$"
+        display_name:
+          type: string
+        capabilities:
+          type: array
+          items:
+            type: string
+        status:
+          type: string
+          enum: [active, disabled, revoked, deleted]
+    SecurityContext:
+      type: object
+      required: [transport, timestamp, nonce]
+      additionalProperties: false
+      properties:
+        transport:
+          type: string
+          enum: [tls]
+        signed:
+          type: boolean
+        signature_alg:
+          type: string
+          enum: [ed25519, none]
+        key_id:
+          type: string
+          pattern: "^key_[A-Za-z0-9]+$"
+        timestamp:
+          type: string
+          format: date-time
+        nonce:
+          type: string
+        signature:
+          type: string
+    MessageEnvelope:
+      type: object
+      required: [protocol, conversation_id, from, to, sender_mode, content]
+      additionalProperties: false
+      properties:
+        protocol:
+          type: string
+          const: agentlink.message.v0.2
+        message_id:
+          type: string
+          pattern: "^msg_[A-Za-z0-9]+$"
+        client_msg_id:
+          type: string
+        conversation_id:
+          type: string
+          pattern: "^conv_[A-Za-z0-9]+$"
+        from:
+          $ref: "#/components/schemas/Actor"
+        on_behalf_of:
+          $ref: "#/components/schemas/Actor"
+        to:
+          type: array
+          minItems: 1
+          items:
+            $ref: "#/components/schemas/Actor"
+        sender_mode:
+          type: string
+          enum: [human_sent, agent_drafted, agent_sent, app_sent, system_sent]
+        content:
+          type: object
+          required: [type]
+          additionalProperties: true
+          properties:
+            type:
+              type: string
+            text:
+              type: string
+        policy:
+          type: object
+          additionalProperties: true
+        security:
+          $ref: "#/components/schemas/SecurityContext"
+        created_at:
+          type: string
+          format: date-time
+    ResponseEnvelope:
+      type: object
+      required: [ok, request_id]
+      properties:
+        ok:
+          type: boolean
+        data:
+          type: object
+          additionalProperties: true
+        error:
+          type: object
+          properties:
+            code:
+              type: string
+            message:
+              type: string
+            details:
+              type: object
+              additionalProperties: true
+        request_id:
+          type: string
+

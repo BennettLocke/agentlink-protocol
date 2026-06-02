@@ -1,0 +1,148 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://agentlink.dev/schemas/message-v0.2.schema.json",
+  "title": "AgentLink Message Envelope v0.2",
+  "type": "object",
+  "required": ["protocol", "conversation_id", "from", "to", "sender_mode", "content"],
+  "additionalProperties": false,
+  "properties": {
+    "protocol": {
+      "type": "string",
+      "const": "agentlink.message.v0.2"
+    },
+    "message_id": {
+      "type": "string",
+      "pattern": "^msg_[A-Za-z0-9]+$"
+    },
+    "client_msg_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "conversation_id": {
+      "type": "string",
+      "pattern": "^conv_[A-Za-z0-9]+$"
+    },
+    "from": {
+      "$ref": "actor.schema.json"
+    },
+    "on_behalf_of": {
+      "$ref": "actor.schema.json"
+    },
+    "to": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "actor.schema.json"
+      }
+    },
+    "sender_mode": {
+      "type": "string",
+      "enum": ["human_sent", "agent_drafted", "agent_sent", "app_sent", "system_sent"]
+    },
+    "content": {
+      "oneOf": [
+        {
+          "type": "object",
+          "required": ["type", "text"],
+          "additionalProperties": false,
+          "properties": {
+            "type": {
+              "type": "string",
+              "const": "text"
+            },
+            "text": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        },
+        {
+          "type": "object",
+          "required": ["type", "alg", "ciphertext"],
+          "additionalProperties": false,
+          "properties": {
+            "type": {
+              "type": "string",
+              "const": "ciphertext"
+            },
+            "alg": {
+              "type": "string",
+              "minLength": 1
+            },
+            "ciphertext": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        }
+      ]
+    },
+    "policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "approval": {
+          "type": "string",
+          "enum": ["not_required", "required", "granted", "denied"]
+        },
+        "sensitive": {
+          "type": "boolean"
+        },
+        "requires_human_reply": {
+          "type": "boolean"
+        },
+        "visibility": {
+          "type": "string",
+          "enum": ["participants", "owner_only", "server_audit"]
+        }
+      }
+    },
+    "security": {
+      "$ref": "security-context.schema.json"
+    },
+    "receipts": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["type", "actor", "created_at"],
+        "additionalProperties": false,
+        "properties": {
+          "receipt_id": {
+            "type": "string",
+            "pattern": "^rcp_[A-Za-z0-9]+$"
+          },
+          "type": {
+            "type": "string",
+            "enum": ["sent", "delivered", "read", "failed", "revoked"]
+          },
+          "actor": {
+            "$ref": "actor.schema.json"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      }
+    },
+    "audit": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "request_id": {
+          "type": "string",
+          "pattern": "^req_[A-Za-z0-9]+$"
+        },
+        "trace_id": {
+          "type": "string",
+          "pattern": "^trc_[A-Za-z0-9]+$"
+        }
+      }
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    }
+  }
+}
+
