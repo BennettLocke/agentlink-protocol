@@ -1,0 +1,39 @@
+name: Protocol proposal
+description: Suggest a protocol change or clarification.
+title: "[Proposal]: "
+labels: ["proposal"]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem
+      description: What problem should the protocol solve?
+    validations:
+      required: true
+  - type: textarea
+    id: current_behavior
+    attributes:
+      label: Current behavior
+      description: What does the current draft say or imply?
+    validations:
+      required: true
+  - type: textarea
+    id: suggested_change
+    attributes:
+      label: Suggested change
+      description: What should change?
+    validations:
+      required: true
+  - type: textarea
+    id: compatibility
+    attributes:
+      label: Compatibility impact
+      description: Would this break existing implementations?
+    validations:
+      required: true
+  - type: textarea
+    id: example
+    attributes:
+      label: Example payload
+      description: Add a JSON example if useful.
+

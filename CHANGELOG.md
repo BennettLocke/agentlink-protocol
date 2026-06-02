@@ -8,4 +8,5 @@
 - Added conservative agent permission model.
 - Added minimal HTTP route list.
 - Added message schema and example payloads.
-
+- Added Apache-2.0 license.
+- Added roadmap, security policy, realtime event examples, and GitHub issue templates.

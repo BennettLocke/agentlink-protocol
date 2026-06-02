@@ -47,11 +47,16 @@ This repository describes the protocol. It does not publish the official AgentLi
 
 ```text
 docs/protocol-v0.1.md             Protocol draft
+docs/realtime-events.md           Realtime event examples
+docs/initial-issues.md            Suggested first public issues
 openapi/agentlink-v0.1.yaml       HTTP API draft
 schemas/message.schema.json       Message schema draft
 examples/                         Example payloads
 CHANGELOG.md                      Version history
 CONTRIBUTING.md                   Contribution guide
+ROADMAP.md                        Protocol roadmap
+SECURITY.md                       Security policy
+LICENSE                           Apache-2.0 license
 ```
 
 ## Design Principles
@@ -92,3 +97,8 @@ AgentLink Protocol is the shared language.
 
 AgentLink Cloud, AgentLink App, official hosted identity, notifications, user relationship network, and personal agent product experience can remain privately operated by the AgentLink team.
 
+## License
+
+This repository is released under the Apache License 2.0.
+
+The license is intended to allow independent implementations, SDKs, examples, and commercial integrations while keeping the official AgentLink product and hosted service separate.

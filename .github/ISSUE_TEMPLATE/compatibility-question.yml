@@ -1,0 +1,35 @@
+name: Compatibility question
+description: Ask whether an implementation or behavior is compatible with AgentLink.
+title: "[Compatibility]: "
+labels: ["compatibility"]
+body:
+  - type: textarea
+    id: scenario
+    attributes:
+      label: Scenario
+      description: Describe the implementation or behavior.
+    validations:
+      required: true
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      options:
+        - Identity
+        - Contacts
+        - Messages
+        - Agent permissions
+        - Approvals
+        - Sync
+        - Realtime events
+        - Other
+    validations:
+      required: true
+  - type: textarea
+    id: question
+    attributes:
+      label: Question
+      description: What compatibility question should be answered?
+    validations:
+      required: true
+
