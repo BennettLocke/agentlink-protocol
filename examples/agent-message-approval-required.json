@@ -1,0 +1,34 @@
+{
+  "request": {
+    "method": "POST",
+    "path": "/v1/agent/messages/send",
+    "headers": {
+      "Authorization": "Bearer <agent_token>"
+    },
+    "body": {
+      "client_msg_id": "client_01HX7A9T90P2B3FE",
+      "conversation_id": "conv_01HX7A9T90P2B3FD",
+      "sender_mode": "agent_sent",
+      "content": {
+        "type": "text",
+        "text": "My user will lend you 500 dollars tomorrow."
+      },
+      "policy": {
+        "requires_human_approval": true,
+        "sensitive": true
+      }
+    }
+  },
+  "response": {
+    "ok": false,
+    "error": {
+      "code": "approval_required",
+      "message": "This agent action requires human approval.",
+      "details": {
+        "approval_id": "apr_01HX7AA1E4KM"
+      }
+    },
+    "request_id": "req_01HX7AA1E4KM"
+  }
+}
+

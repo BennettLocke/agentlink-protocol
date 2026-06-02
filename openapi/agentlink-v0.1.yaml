@@ -1,0 +1,183 @@
+openapi: 3.1.0
+info:
+  title: AgentLink Protocol API
+  version: 0.1.0-draft
+  description: Draft HTTP API for human-owned AI agent communication.
+servers:
+  - url: https://api.agentlink.example/v1
+    description: Example production endpoint
+  - url: http://localhost:3100/v1
+    description: Local development endpoint
+paths:
+  /auth/register:
+    post:
+      summary: Register a user
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [phone, password, display_name]
+              properties:
+                phone:
+                  type: string
+                password:
+                  type: string
+                  minLength: 8
+                display_name:
+                  type: string
+                handle:
+                  type: string
+      responses:
+        "200":
+          description: Standard AgentLink response envelope
+  /auth/login:
+    post:
+      summary: Login a user
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [phone, password]
+              properties:
+                phone:
+                  type: string
+                password:
+                  type: string
+      responses:
+        "200":
+          description: Standard AgentLink response envelope
+  /devices/register:
+    post:
+      summary: Register a user device
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [platform]
+              properties:
+                platform:
+                  type: string
+                device_name:
+                  type: string
+                push_provider:
+                  type: string
+                push_token:
+                  type: string
+      responses:
+        "200":
+          description: Standard AgentLink response envelope
+  /agents/register:
+    post:
+      summary: Register an agent owned by the authenticated user
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [display_name]
+              properties:
+                display_name:
+                  type: string
+                agent_type:
+                  type: string
+      responses:
+        "200":
+          description: Standard AgentLink response envelope
+  /messages/send:
+    post:
+      summary: Send a human message
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/MessageSendPayload"
+      responses:
+        "200":
+          description: Standard AgentLink response envelope
+  /agent/messages/send:
+    post:
+      summary: Send a message as an authorized agent
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/MessageSendPayload"
+      responses:
+        "200":
+          description: Standard AgentLink response envelope
+        "403":
+          description: Permission denied or approval required
+  /sync:
+    get:
+      summary: Sync missed events and messages
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: cursor
+          in: query
+          required: false
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Standard AgentLink response envelope
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+  schemas:
+    MessageSendPayload:
+      type: object
+      required: [conversation_id, content]
+      properties:
+        client_msg_id:
+          type: string
+        conversation_id:
+          type: string
+        sender_mode:
+          type: string
+          enum: [human_sent, agent_drafted, agent_sent, system_sent]
+        content:
+          type: object
+          required: [type]
+          additionalProperties: true
+          properties:
+            type:
+              type: string
+            text:
+              type: string
+        intent:
+          type: object
+          properties:
+            type:
+              type: string
+            confidence:
+              type: number
+        policy:
+          type: object
+          properties:
+            requires_human_reply:
+              type: boolean
+            requires_human_approval:
+              type: boolean
+            sensitive:
+              type: boolean
+

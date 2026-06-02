@@ -1,0 +1,28 @@
+{
+  "request": {
+    "method": "POST",
+    "path": "/v1/messages/send",
+    "headers": {
+      "Authorization": "Bearer <user_access_token>"
+    },
+    "body": {
+      "client_msg_id": "client_01HX7A9T90P2B3FD",
+      "conversation_id": "conv_01HX7A9T90P2B3FD",
+      "sender_mode": "human_sent",
+      "content": {
+        "type": "text",
+        "text": "Want to have lunch together?"
+      }
+    }
+  },
+  "response": {
+    "ok": true,
+    "data": {
+      "message_id": "msg_01HX7A9T90P2B3FD",
+      "sender_mode": "human_sent",
+      "status": "sent"
+    },
+    "request_id": "req_01HX7A9Z8YH5"
+  }
+}
+
