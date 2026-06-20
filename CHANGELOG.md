@@ -1,5 +1,17 @@
 # Changelog
 
+## v0.3.0-draft - 2026-06-16
+
+- Added security and key-system draft covering security layers, device keys, conversation key versions, wrapped keys, agent decryption grants, ciphertext content, signing, replay protection, and local encrypted cache.
+- Added `schemas/message-v0.3.schema.json` to define ciphertext content fields, content-protection metadata, and future E2EE envelope compatibility.
+- Added `examples/encrypted-agent-reply-v0.3.json` to show a signed Agent ciphertext reply using `signer_agent_crypto_key_id`.
+- Added `docs/compatibility-checklist.md` with compatibility levels from message shape through scoped Agent grant security.
+- Documented baseline `/v1/crypto/*` routes for device keys, conversation key versions, wrapped keys, and agent key grants.
+- Documented ciphertext nonce replay protection and message security context metadata.
+- Added `security.signer_device_key_id` for device-signed encrypted human messages.
+- Added `security.signer_agent_crypto_key_id` for encrypted Agent replies.
+- Updated README and roadmap to make the security/key-system draft discoverable.
+
 ## v0.2.0-draft - 2026-06-02
 
 - Added unified actor model for users, agents, apps, devices, and system actors.

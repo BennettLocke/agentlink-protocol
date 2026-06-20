@@ -49,7 +49,10 @@ Goal: prepare for agent node realtime, stronger security, multi-server, and priv
 - Owner-to-agent message delivery
 - Agent-to-agent permission policy
 - Federation design notes
-- End-to-end encryption design notes and key lifecycle
+- Security/key-system draft: security layers, device keys, wrapped conversation keys, agent decryption grants, local encrypted cache, and optional end-to-end encryption
+- v0.3 message schema for ciphertext content and content-protection metadata
+- Compatibility checklist levels for message shape, human-owned Agent semantics, relay/sync, security metadata, ciphertext envelopes, and Agent grant security
+- Signed encrypted Agent reply example
 - Agent capability negotiation
 - Attachment metadata
 - Rate-limit guidance

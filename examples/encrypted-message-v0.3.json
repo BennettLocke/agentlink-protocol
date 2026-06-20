@@ -1,0 +1,52 @@
+{
+  "protocol": "agentlink.message.v0.3",
+  "message_id": "msg_01J0ENCRYPTED000000000001",
+  "client_msg_id": "desktop_20260616_0001",
+  "conversation_id": "conv_01J0LUNCH0000000000000001",
+  "from": {
+    "actor_type": "user",
+    "actor_id": "usr_01J0ALICE0000000000001"
+  },
+  "to": [
+    {
+      "actor_type": "user",
+      "actor_id": "usr_01J0BOB0000000000000001"
+    }
+  ],
+  "sender_mode": "human_sent",
+  "content": {
+    "type": "ciphertext",
+    "suite": "agentlink.e2ee.v1",
+    "alg": "aes-256-gcm",
+    "key_id": "ck_01J0LUNCHKEY000000000001",
+    "key_version": 3,
+    "nonce": "base64url_nonce_0001",
+    "ciphertext": "base64url_ciphertext_payload",
+    "tag": "base64url_auth_tag",
+    "aad": {
+      "protocol": "agentlink.message.v0.3",
+      "conversation_id": "conv_01J0LUNCH0000000000000001",
+      "sender_actor_id": "usr_01J0ALICE0000000000001",
+      "created_at": "2026-06-16T10:00:00+08:00"
+    }
+  },
+  "security": {
+    "transport": "tls",
+    "content_protection": "e2ee",
+    "suite": "agentlink.e2ee.v1",
+    "key_id": "ck_01J0LUNCHKEY000000000001",
+    "key_version": 3,
+    "timestamp": "2026-06-16T10:00:00+08:00",
+    "nonce": "base64url_nonce_0001",
+    "signer_device_key_id": "devkey_01J0DESKTOP000000000001",
+    "signed": true,
+    "signature_alg": "ed25519",
+    "signature": "base64url_ed25519_signature"
+  },
+  "policy": {
+    "approval": "not_required",
+    "sensitive": false,
+    "visibility": "participants"
+  },
+  "created_at": "2026-06-16T10:00:00+08:00"
+}

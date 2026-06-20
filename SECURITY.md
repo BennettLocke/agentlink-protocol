@@ -13,6 +13,8 @@ In scope:
 - Token handling guidance
 - Sync cursor privacy leaks
 - Realtime event authorization issues
+- Ciphertext envelope ambiguity
+- Agent grant bypasses in encrypted Agent replies
 
 Out of scope for this protocol repository:
 
@@ -34,11 +36,13 @@ For sensitive reports, do not include secrets, real tokens, private user data, o
 - Sensitive agent actions should require human approval.
 - Tokens should be scoped to the actor type: user, device, or agent.
 - Sync APIs should return only data visible to the authenticated user.
-- v0.2 messages should preserve actor identity through `from`, `to`, and `on_behalf_of`.
+- v0.2 and v0.3 messages should preserve actor identity through `from`, `to`, and `on_behalf_of`.
 - Agent tokens must not be accepted as user session tokens.
 - Important agent or app messages should include timestamp and nonce fields so servers can reject expired or replayed messages.
 - Where signatures are implemented, use audited cryptographic libraries and do not invent low-level algorithms.
-- Full end-to-end encryption is a future extension; implementations should document whether the server can read message content.
+- Ciphertext messages should declare `suite`, `alg`, `key_id`, `key_version`, `nonce`, `ciphertext`, and `tag`.
+- Encrypted Agent replies should be signed and should require an active, unexpired, non-revoked Agent grant for the same conversation key.
+- Full end-to-end encryption is not complete in the public draft; implementations should document whether the server can read message content.
 
 ## v0.2 Security Model
 
@@ -60,8 +64,8 @@ Reserved timestamp, nonce, key_id, signature_alg, and signature fields.
 Audit:
 Sensitive agent actions should be traceable with request_id and trace_id.
 
-Future privacy:
-Optional end-to-end encryption for high-privacy conversations.
+Privacy:
+Local encrypted cache, ciphertext envelopes, scoped Agent grants, and future optional end-to-end encryption for high-privacy conversations.
 ```
 
 Recommended public references:

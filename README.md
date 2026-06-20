@@ -1,8 +1,8 @@
 # AgentLink Protocol
 
-AgentLink Protocol is a draft communication protocol for humans, agents, apps, and devices.
+AgentLink Protocol is an early draft communication protocol for humans, agents, apps, and devices.
 
-The core idea is simple:
+The protocol is built around one product belief:
 
 ```text
 Humans own relationships.
@@ -13,120 +13,119 @@ Servers relay messages reliably before federation or P2P is introduced.
 
 ## Status
 
-- Latest draft: `v0.2`
-- Previous draft: `v0.1`
-- State: Draft
-- Date: 2026-06-02
-- Intended use: AgentLink server MVP, mobile app MVP, and early agent integrations
+| Area | Current Draft | Status |
+|---|---:|---|
+| Core actor and message model | `v0.2` | Draft |
+| Security and key-system guidance | `v0.3` | Draft |
+| Stable production standard | `v1.0` | Not released |
 
-This repository describes the protocol. It does not publish the official AgentLink server, mobile app, production database, or commercial operation system.
+Date: 2026-06-20
+
+This repository describes the public protocol. It does not publish the official AgentLink server, desktop app, mobile app, production database, hosted identity network, or commercial operating system.
+
+## Start Here
+
+Recommended reading order:
+
+1. `docs/protocol-v0.2.md` - actor model, message envelope, approvals, receipts, sync, and realtime semantics.
+2. `docs/security-key-system-v0.3.md` - device keys, wrapped conversation keys, Agent crypto keys, Agent grants, ciphertext envelopes, signatures, and replay protection.
+3. `docs/compatibility-checklist.md` - what an implementation must support before claiming AgentLink compatibility.
+4. `examples/` - example payloads for human, Agent, approval, realtime, security context, and ciphertext messages.
+5. `schemas/` - JSON Schema drafts for message envelopes, actors, events, approvals, and security contexts.
+6. `openapi/` - early HTTP API drafts.
 
 ## What This Protocol Covers
 
-- Unified actor identity: user, agent, app, device, and system
-- Contact requests between real users
-- Direct conversations
-- Human-sent and agent-sent messages
-- Human approval for sensitive agent actions
-- Message receipts
-- Offline sync
-- Realtime delivery events
-- Actor-scoped tokens
-- Message signing fields, timestamps, nonces, and replay-protection guidance
-- Future end-to-end encryption extension points
+- Unified actor identity: `user`, `agent`, `app`, `device`, and `system`.
+- Direct conversations between real users.
+- Human-sent, agent-drafted, agent-sent, app-sent, and system-sent messages.
+- Human approval for sensitive Agent actions.
+- Message receipts and offline sync semantics.
+- Realtime delivery events.
+- Actor-scoped token guidance.
+- Message signing fields, timestamps, nonces, and replay-protection guidance.
+- Security layers: transport, server-protected storage, local encrypted cache, and optional future E2EE.
+- Device public keys, wrapped conversation keys, Agent public crypto keys, and scoped Agent decryption grants.
+- Ciphertext content envelopes for encrypted message payloads.
 
-## What v0.2 Does Not Cover
+## What This Protocol Does Not Cover Yet
 
-- Group chat
-- Social feeds
-- Voice or video calls
-- Payments
-- Full end-to-end encryption
-- Federation
-- P2P direct delivery
-- Third-party plugin marketplace
-- Complex agent-to-agent negotiation
+- Group chat.
+- Voice or video calls.
+- Payments.
+- Federation.
+- P2P direct delivery.
+- Third-party plugin marketplace.
+- Full OpenAPI coverage for every possible implementation route.
+- A stable `v1.0` compatibility suite.
+
+The protocol includes encryption and key-management guidance, but it should not be described as a finished universal E2EE standard yet.
 
 ## Repository Structure
 
 ```text
-docs/protocol-v0.2.md                 Latest protocol draft
-docs/protocol-v0.1.md                 Previous protocol draft
-docs/migration-v0.1-to-v0.2.md        Migration notes
-docs/realtime-events.md               Realtime event examples
-docs/initial-issues.md                Suggested first public issues
-openapi/agentlink-v0.2.yaml           v0.2 HTTP API draft
-openapi/agentlink-v0.1.yaml           v0.1 HTTP API draft
-schemas/actor.schema.json             Actor schema
-schemas/message-v0.2.schema.json      v0.2 message envelope schema
-schemas/security-context.schema.json  Security context schema
-schemas/event-v0.2.schema.json        Realtime event schema
-schemas/approval.schema.json          Approval schema
-schemas/message.schema.json           v0.1 message send payload schema
-examples/                             Example payloads
-CHANGELOG.md                          Version history
-CONTRIBUTING.md                        Contribution guide
-ROADMAP.md                             Protocol roadmap
-SECURITY.md                            Security policy
-LICENSE                                Apache-2.0 license
+docs/protocol-v0.2.md                   Latest core protocol draft
+docs/security-key-system-v0.3.md        Security and key-system draft
+docs/compatibility-checklist.md         Compatibility levels and claims
+docs/protocol-v0.1.md                   Previous protocol draft
+docs/migration-v0.1-to-v0.2.md          Migration notes
+docs/realtime-events.md                 Realtime event examples
+docs/initial-issues.md                  Suggested first public issues
+openapi/agentlink-v0.2.yaml             v0.2 HTTP API draft
+openapi/agentlink-v0.1.yaml             v0.1 HTTP API draft
+schemas/actor.schema.json               Actor schema
+schemas/message-v0.3.schema.json        v0.3 message schema with ciphertext support
+schemas/message-v0.2.schema.json        v0.2 message schema
+schemas/security-context.schema.json    Security context schema
+schemas/event-v0.2.schema.json          Realtime event schema
+schemas/approval.schema.json            Approval schema
+schemas/message.schema.json             v0.1 message send payload schema
+examples/encrypted-message-v0.3.json    Human ciphertext message example
+examples/encrypted-agent-reply-v0.3.json Agent ciphertext reply example
+examples/                               Other example payloads
+CHANGELOG.md                            Version history
+CONTRIBUTING.md                         Contribution guide
+ROADMAP.md                              Protocol roadmap
+SECURITY.md                             Security policy
+LICENSE                                 Apache-2.0 license
 ```
-
-## Design Principles
-
-1. Human-centered identity: an agent cannot own social relationships independently.
-2. Visible source: clients must preserve whether a message was sent by a human, drafted by an agent, or sent automatically by an agent.
-3. Conservative permissions: agents can draft by default, but automatic sending should be explicitly granted.
-4. Server relay first: the early drafts optimize for reliability, moderation, auditability, and mobile delivery.
-5. Open protocol, private product: this protocol can be public while the official AgentLink service remains a commercial product.
-6. One protocol, multiple actors: human-human, human-agent, and agent-agent communication share the same message model.
-7. Security by layers: transport encryption, actor-scoped authentication, message signing, replay protection, and future optional end-to-end encryption are separate concerns.
-
-## Minimal v0.2 Message Example
-
-```json
-{
-  "protocol": "agentlink.message.v0.2",
-  "conversation_id": "conv_01J0LUNCH0000000000000001",
-  "from": {
-    "actor_type": "user",
-    "actor_id": "usr_01J0ALICE0000000000000001"
-  },
-  "to": [
-    {
-      "actor_type": "user",
-      "actor_id": "usr_01J0BOB000000000000000001"
-    }
-  ],
-  "sender_mode": "human_sent",
-  "content": {
-    "type": "text",
-    "text": "Want to have lunch together?"
-  }
-}
-```
-
-See `examples/` for human-to-human, agent-to-user, agent-to-agent, approval, realtime event, and security-context examples.
 
 ## Compatibility
 
-A service should not claim AgentLink compatibility unless it:
+Do not claim generic "AgentLink compatible" support without naming the draft and level.
 
-- Uses the standard response envelope.
-- Represents participants with actor type and actor id.
-- Preserves message source metadata.
-- Enforces user-owned contact relationships.
-- Requires user authorization for agent actions.
-- Supports offline sync or clearly declares sync limitations.
-- Scopes tokens by actor type.
-- Supports or documents message signing and replay-protection behavior.
+Recommended claim format:
 
-v0.1 route names may remain in early implementations. v0.2 compatibility is about message semantics and actor-aware envelopes, not forcing an immediate route rename.
+```text
+Compatible with AgentLink Protocol v0.2 Level 2.
+Implements AgentLink security/key-system v0.3 Level 4.
+```
+
+See `docs/compatibility-checklist.md` for the current level definitions.
+
+At minimum, an implementation should:
+
+- Preserve actor type and actor id.
+- Preserve whether a message was human-sent, agent-drafted, or agent-sent.
+- Keep `on_behalf_of` metadata when an Agent acts for a user.
+- Require user authorization for Agent actions.
+- Scope tokens by actor type.
+- Document whether the server can read message plaintext.
+- Validate security fields where the implementation claims support.
 
 ## Commercial Boundary
 
 AgentLink Protocol is the shared language.
 
-AgentLink Cloud, AgentLink App, official hosted identity, notifications, user relationship network, and personal agent product experience can remain privately operated by the AgentLink team.
+The official AgentLink product can remain privately operated:
+
+- AgentLink Cloud.
+- AgentLink desktop and future mobile app.
+- Hosted identity, notifications, and user relationship network.
+- Production database and deployment system.
+- Official OpenClaw and other commercial connector integrations.
+
+This separation is intentional: the protocol can be public while the official product remains a commercial implementation.
 
 ## License
 
