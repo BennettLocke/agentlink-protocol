@@ -25,7 +25,14 @@ This repository describes the public protocol. It does not publish the official 
 
 ## Start Here
 
-Recommended reading order:
+Fast path:
+
+1. `docs/developer-quickstart.md` - 3 minutes to understand the model, 5 minutes to run examples, 10 minutes to choose a compatibility level.
+2. Run `npm test`.
+3. Run `npm run example:js`.
+4. Run `npm run example:openclaw`.
+
+Reading order:
 
 1. `docs/protocol-v0.2.md` - actor model, message envelope, approvals, receipts, sync, and realtime semantics.
 2. `docs/security-key-system-v0.3.md` - device keys, wrapped conversation keys, Agent crypto keys, Agent grants, ciphertext envelopes, signatures, and replay protection.
@@ -92,6 +99,7 @@ The protocol includes encryption and key-management guidance, but it should not 
 docs/protocol-v0.2.md                   Latest core protocol draft
 docs/security-key-system-v0.3.md        Security and key-system draft
 docs/compatibility-checklist.md         Compatibility levels and claims
+docs/developer-quickstart.md            3/5/10 minute developer entry page
 docs/protocol-v0.1.md                   Previous protocol draft
 docs/migration-v0.1-to-v0.2.md          Migration notes
 docs/realtime-events.md                 Realtime event examples
