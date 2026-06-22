@@ -1,8 +1,10 @@
 # AgentLink JavaScript SDK Example
 
+Package name: `@agentlink/protocol-sdk`
+
 This is a minimal, dependency-free JavaScript example for constructing AgentLink protocol messages.
 
-It is not the official production SDK yet. Use it as a reference for:
+It is not published to npm yet and is not the official production SDK yet. Use it as a reference for:
 
 - building actor objects,
 - creating `agentlink.message.v0.2` text message envelopes,
@@ -69,6 +71,15 @@ Run the SDK example tests from the repository root:
 ```powershell
 npm run test:sdk
 ```
+
+Validate the SDK package metadata and dry-run package contents:
+
+```powershell
+npm run test:sdk-package
+npm run pack:sdk:js
+```
+
+The package dry-run checks the local `sdk/javascript/package.json`, `exports`, file whitelist, and generated npm package contents without publishing anything.
 
 Run the complete message/event example:
 

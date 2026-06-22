@@ -1,0 +1,27 @@
+{
+  "name": "@agentlink/protocol-sdk",
+  "version": "0.3.0-draft.0",
+  "description": "Dependency-free JavaScript helpers for AgentLink Protocol draft messages and events.",
+  "license": "Apache-2.0",
+  "type": "commonjs",
+  "main": "./agentlink.js",
+  "exports": {
+    ".": "./agentlink.js"
+  },
+  "files": [
+    "agentlink.js",
+    "README.md",
+    "examples/"
+  ],
+  "keywords": [
+    "agentlink",
+    "protocol",
+    "agent",
+    "messaging",
+    "sdk"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
+  "sideEffects": false
+}

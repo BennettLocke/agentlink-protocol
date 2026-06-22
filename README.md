@@ -32,6 +32,7 @@ Fast path:
 3. Run `npm run example:js`.
 4. Run `npm run example:openclaw`.
 5. Run `npm run test:compat` when changing compatibility levels, examples, or security guidance.
+6. Run `npm run pack:sdk:js` before changing JavaScript SDK package metadata.
 
 Reading order:
 
@@ -74,6 +75,12 @@ To run the compatibility evidence gate:
 
 ```powershell
 npm run test:compat
+```
+
+To verify the JavaScript SDK package shape without publishing:
+
+```powershell
+npm run pack:sdk:js
 ```
 
 ## What This Protocol Covers
@@ -132,6 +139,7 @@ examples/                               Other example payloads
 sdk/javascript/                         Minimal JavaScript SDK example
 scripts/validate-examples.js            Lightweight schema/example compatibility check
 scripts/validate-compatibility-suite.js Level evidence compatibility gate
+scripts/validate-sdk-package.js         JavaScript SDK package dry-run gate
 CHANGELOG.md                            Version history
 CONTRIBUTING.md                         Contribution guide
 ROADMAP.md                              Protocol roadmap

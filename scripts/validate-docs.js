@@ -51,6 +51,7 @@ try {
     "docs/compatibility-matrix.md",
     "docs/compatibility-suite.md",
     "npm run test:compat",
+    "npm run pack:sdk:js",
     "AgentLink Cloud",
     "private product code",
     "docs/connector-boundary.md"

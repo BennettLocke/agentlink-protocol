@@ -59,6 +59,12 @@ Run the compatibility evidence gate:
 npm run test:compat
 ```
 
+Verify the JavaScript SDK package shape without publishing:
+
+```powershell
+npm run pack:sdk:js
+```
+
 The OpenClaw example shows this shape:
 
 ```text
