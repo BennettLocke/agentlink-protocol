@@ -32,7 +32,8 @@ Recommended reading order:
 3. `docs/compatibility-checklist.md` - what an implementation must support before claiming AgentLink compatibility.
 4. `examples/` - example payloads for human, Agent, approval, realtime, security context, and ciphertext messages.
 5. `schemas/` - JSON Schema drafts for message envelopes, actors, events, approvals, and security contexts.
-6. `openapi/` - early HTTP API drafts.
+6. `sdk/javascript/` - dependency-free JavaScript SDK example for constructing and validating simple messages.
+7. `openapi/` - early HTTP API drafts.
 
 ## Validate The Draft
 
@@ -95,6 +96,7 @@ schemas/message.schema.json             v0.1 message send payload schema
 examples/encrypted-message-v0.3.json    Human ciphertext message example
 examples/encrypted-agent-reply-v0.3.json Agent ciphertext reply example
 examples/                               Other example payloads
+sdk/javascript/                         Minimal JavaScript SDK example
 scripts/validate-examples.js            Lightweight schema/example compatibility check
 CHANGELOG.md                            Version history
 CONTRIBUTING.md                         Contribution guide

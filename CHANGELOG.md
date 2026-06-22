@@ -6,6 +6,7 @@
 - Added a lightweight Node.js validator that checks JSON parsing, local schema references, and example-to-schema compatibility without adding package dependencies.
 - Documented the validation command in the README and compatibility checklist.
 - Added GitHub Actions protocol validation for pushes and pull requests to `main`.
+- Added a dependency-free JavaScript SDK example for constructing human and Agent text messages, creating `message.new` events, and running local envelope validation.
 
 ## v0.3.0-draft - 2026-06-16
 

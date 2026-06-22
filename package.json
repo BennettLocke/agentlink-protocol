@@ -4,7 +4,8 @@
   "private": true,
   "description": "Public AgentLink protocol drafts, schemas, and examples.",
   "scripts": {
-    "test": "node scripts/validate-examples.js",
+    "test": "node scripts/validate-examples.js && npm run test:sdk",
+    "test:sdk": "node sdk/javascript/agentlink.test.js",
     "validate": "node scripts/validate-examples.js"
   },
   "license": "Apache-2.0"
