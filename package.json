@@ -6,7 +6,8 @@
   "scripts": {
     "example:js": "node sdk/javascript/examples/send-message.js",
     "example:openclaw": "node sdk/javascript/examples/openclaw-connector.js",
-    "test": "node scripts/validate-examples.js && npm run test:sdk && npm run test:docs",
+    "test": "node scripts/validate-examples.js && npm run test:sdk && npm run test:docs && npm run test:compat",
+    "test:compat": "node scripts/validate-compatibility-suite.js",
     "test:docs": "node scripts/validate-docs.js",
     "test:sdk": "node sdk/javascript/agentlink.test.js",
     "validate": "node scripts/validate-examples.js"

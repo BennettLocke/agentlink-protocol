@@ -28,6 +28,7 @@ Read next:
 - `docs/security-key-system-v0.3.md` for keys, grants, ciphertext, signatures, and replay protection.
 - `docs/compatibility-checklist.md` before claiming compatibility.
 - `docs/compatibility-matrix.md` to map client, server, connector, and SDK claims to evidence.
+- `docs/compatibility-suite.md` to understand the automated evidence gate.
 - `docs/connector-boundary.md` before publishing connector examples.
 
 ## 5 minutes: run the examples
@@ -50,6 +51,12 @@ Generate a local-only OpenClaw-style connector flow:
 
 ```powershell
 npm run example:openclaw
+```
+
+Run the compatibility evidence gate:
+
+```powershell
+npm run test:compat
 ```
 
 The OpenClaw example shows this shape:
@@ -116,6 +123,6 @@ AgentLink Cloud and the official AgentLink apps can remain private commercial im
 
 ## Suggested next file
 
-After this quickstart, read `docs/compatibility-checklist.md` and `docs/compatibility-matrix.md`, then decide which level your implementation wants to claim.
+After this quickstart, read `docs/compatibility-checklist.md`, `docs/compatibility-matrix.md`, and `docs/compatibility-suite.md`, then decide which level your implementation wants to claim.
 
 If you plan to publish connector examples, also read `docs/connector-boundary.md` before adding code.

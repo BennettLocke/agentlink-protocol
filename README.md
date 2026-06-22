@@ -31,6 +31,7 @@ Fast path:
 2. Run `npm test`.
 3. Run `npm run example:js`.
 4. Run `npm run example:openclaw`.
+5. Run `npm run test:compat` when changing compatibility levels, examples, or security guidance.
 
 Reading order:
 
@@ -38,11 +39,12 @@ Reading order:
 2. `docs/security-key-system-v0.3.md` - device keys, wrapped conversation keys, Agent crypto keys, Agent grants, ciphertext envelopes, signatures, and replay protection.
 3. `docs/compatibility-checklist.md` - what an implementation must support before claiming AgentLink compatibility.
 4. `docs/compatibility-matrix.md` - how client, server, connector, SDK, and hosted platform implementations should map levels to evidence.
-5. `docs/connector-boundary.md` - what public connector examples may contain, and what must stay private.
-6. `examples/` - example payloads for human, Agent, approval, realtime, security context, and ciphertext messages.
-7. `schemas/` - JSON Schema drafts for message envelopes, actors, events, approvals, and security contexts.
-8. `sdk/javascript/` - dependency-free JavaScript SDK example for constructing and validating simple messages.
-9. `openapi/` - early HTTP API drafts.
+5. `docs/compatibility-suite.md` - what the automated compatibility suite currently checks.
+6. `docs/connector-boundary.md` - what public connector examples may contain, and what must stay private.
+7. `examples/` - example payloads for human, Agent, approval, realtime, security context, and ciphertext messages.
+8. `schemas/` - JSON Schema drafts for message envelopes, actors, events, approvals, and security contexts.
+9. `sdk/javascript/` - dependency-free JavaScript SDK example for constructing and validating simple messages.
+10. `openapi/` - early HTTP API drafts.
 
 ## Validate The Draft
 
@@ -66,6 +68,12 @@ To see a local-only OpenClaw-style connector flow:
 
 ```powershell
 npm run example:openclaw
+```
+
+To run the compatibility evidence gate:
+
+```powershell
+npm run test:compat
 ```
 
 ## What This Protocol Covers
@@ -102,6 +110,7 @@ docs/protocol-v0.2.md                   Latest core protocol draft
 docs/security-key-system-v0.3.md        Security and key-system draft
 docs/compatibility-checklist.md         Compatibility levels and claims
 docs/compatibility-matrix.md            Compatibility tracks and evidence matrix
+docs/compatibility-suite.md             Automated compatibility evidence gate
 docs/developer-quickstart.md            3/5/10 minute developer entry page
 docs/connector-boundary.md              Public connector example boundary
 docs/protocol-v0.1.md                   Previous protocol draft
@@ -122,6 +131,7 @@ examples/encrypted-agent-reply-v0.3.json Agent ciphertext reply example
 examples/                               Other example payloads
 sdk/javascript/                         Minimal JavaScript SDK example
 scripts/validate-examples.js            Lightweight schema/example compatibility check
+scripts/validate-compatibility-suite.js Level evidence compatibility gate
 CHANGELOG.md                            Version history
 CONTRIBUTING.md                         Contribution guide
 ROADMAP.md                              Protocol roadmap

@@ -24,12 +24,15 @@ try {
   const readme = read("README.md");
   const quickstart = read("docs/developer-quickstart.md");
   const compatibilityMatrix = read("docs/compatibility-matrix.md");
+  const compatibilitySuite = read("docs/compatibility-suite.md");
   const connectorBoundary = read("docs/connector-boundary.md");
 
   requireIncludes("README.md", readme, [
     "docs/developer-quickstart.md",
     "docs/compatibility-matrix.md",
+    "docs/compatibility-suite.md",
     "docs/connector-boundary.md",
+    "npm run test:compat",
     "3 minutes",
     "5 minutes",
     "10 minutes"
@@ -46,6 +49,8 @@ try {
     "Compatible with AgentLink Protocol v0.2 Level 2",
     "Implements AgentLink security/key-system v0.3 Level 4",
     "docs/compatibility-matrix.md",
+    "docs/compatibility-suite.md",
+    "npm run test:compat",
     "AgentLink Cloud",
     "private product code",
     "docs/connector-boundary.md"
@@ -69,6 +74,24 @@ try {
     "docs/connector-boundary.md"
   ]);
 
+  requireIncludes("docs/compatibility-suite.md", compatibilitySuite, [
+    "# AgentLink Compatibility Suite",
+    "npm run test:compat",
+    "Level 0",
+    "Level 1",
+    "Level 2",
+    "Level 3",
+    "Level 4",
+    "Level 5",
+    "sender_mode",
+    "on_behalf_of",
+    "message.new",
+    "ciphertext",
+    "Agent grant",
+    "docs/compatibility-matrix.md",
+    "not a full `v1.0` certification program"
+  ]);
+
   requireIncludes("docs/connector-boundary.md", connectorBoundary, [
     "# AgentLink Connector Boundary",
     "Allowed in public connector examples",
@@ -83,7 +106,7 @@ try {
     "private product code"
   ]);
 
-  console.log("AgentLink protocol docs validated: developer quickstart, compatibility matrix, and connector boundary are linked and complete.");
+  console.log("AgentLink protocol docs validated: developer quickstart, compatibility matrix, compatibility suite, and connector boundary are linked and complete.");
 } catch (error) {
   console.error(error.message);
   process.exit(1);
