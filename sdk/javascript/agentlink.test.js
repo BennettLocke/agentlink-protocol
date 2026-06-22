@@ -5,6 +5,7 @@ const {
   createMessageNewEvent,
   validateMessageEnvelope
 } = require("./agentlink");
+const { buildOpenClawConnectorDemo } = require("./examples/openclaw-connector");
 const { buildDemoPayload } = require("./examples/send-message");
 
 function test(name, fn) {
@@ -119,6 +120,23 @@ test("example script builds a valid message and realtime event", () => {
   assert.equal(payload.event.event, "message.new");
   assert.equal(payload.event.data.message.message_id, payload.message.message_id);
   assert.deepEqual(validateMessageEnvelope(payload.message), []);
+});
+
+test("OpenClaw connector demo translates through a local task without secrets", () => {
+  const demo = buildOpenClawConnectorDemo();
+
+  assert.equal(demo.inbound.message.sender_mode, "human_sent");
+  assert.equal(demo.inbound.message.to[0].actor_type, "agent");
+  assert.equal(demo.openclaw.request.type, "openclaw.task.request");
+  assert.equal(demo.openclaw.request.context.source_message_id, demo.inbound.message.message_id);
+  assert.equal(demo.openclaw.response.type, "openclaw.task.response");
+  assert.equal(demo.outbound.message.sender_mode, "agent_sent");
+  assert.equal(demo.outbound.message.on_behalf_of.actor_type, "user");
+  assert.equal(demo.outbound.event.event, "message.new");
+  assert.deepEqual(validateMessageEnvelope(demo.inbound.message), []);
+  assert.deepEqual(validateMessageEnvelope(demo.outbound.message), []);
+  assert(!JSON.stringify(demo).includes("token"));
+  assert(!JSON.stringify(demo).includes("secret"));
 });
 
 if (process.exitCode) process.exit(process.exitCode);

@@ -75,3 +75,11 @@ Run the complete message/event example:
 ```powershell
 npm run example:js
 ```
+
+Run the OpenClaw-style mock connector example:
+
+```powershell
+npm run example:openclaw
+```
+
+The OpenClaw example is intentionally local-only. It shows the protocol shape for a connector without using real AgentLink Cloud endpoints, production tokens, database state, or private OpenClaw integration code.

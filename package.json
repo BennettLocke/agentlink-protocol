@@ -5,6 +5,7 @@
   "description": "Public AgentLink protocol drafts, schemas, and examples.",
   "scripts": {
     "example:js": "node sdk/javascript/examples/send-message.js",
+    "example:openclaw": "node sdk/javascript/examples/openclaw-connector.js",
     "test": "node scripts/validate-examples.js && npm run test:sdk",
     "test:sdk": "node sdk/javascript/agentlink.test.js",
     "validate": "node scripts/validate-examples.js"

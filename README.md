@@ -53,6 +53,12 @@ To see the JavaScript SDK example generate a message and realtime event:
 npm run example:js
 ```
 
+To see a local-only OpenClaw-style connector flow:
+
+```powershell
+npm run example:openclaw
+```
+
 ## What This Protocol Covers
 
 - Unified actor identity: `user`, `agent`, `app`, `device`, and `system`.

@@ -8,6 +8,7 @@
 - Added GitHub Actions protocol validation for pushes and pull requests to `main`.
 - Added a dependency-free JavaScript SDK example for constructing human and Agent text messages, creating `message.new` events, and running local envelope validation.
 - Added a runnable JavaScript `send-message` example that prints an Agent-sent message and matching realtime event.
+- Added a local-only OpenClaw-style connector example that translates an AgentLink message into a mock task and returns an AgentLink reply event.
 
 ## v0.3.0-draft - 2026-06-16
 
