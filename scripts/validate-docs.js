@@ -23,9 +23,11 @@ function requireIncludes(label, content, values) {
 try {
   const readme = read("README.md");
   const quickstart = read("docs/developer-quickstart.md");
+  const connectorBoundary = read("docs/connector-boundary.md");
 
   requireIncludes("README.md", readme, [
     "docs/developer-quickstart.md",
+    "docs/connector-boundary.md",
     "3 minutes",
     "5 minutes",
     "10 minutes"
@@ -42,10 +44,25 @@ try {
     "Compatible with AgentLink Protocol v0.2 Level 2",
     "Implements AgentLink security/key-system v0.3 Level 4",
     "AgentLink Cloud",
+    "private product code",
+    "docs/connector-boundary.md"
+  ]);
+
+  requireIncludes("docs/connector-boundary.md", connectorBoundary, [
+    "# AgentLink Connector Boundary",
+    "Allowed in public connector examples",
+    "Not allowed in public connector examples",
+    "local-only mock",
+    "production tokens",
+    "private endpoints",
+    "database credentials",
+    "commercial connector internals",
+    "OpenClaw",
+    "AgentLink Cloud",
     "private product code"
   ]);
 
-  console.log("AgentLink protocol docs validated: developer quickstart is linked and complete.");
+  console.log("AgentLink protocol docs validated: developer quickstart and connector boundary are linked and complete.");
 } catch (error) {
   console.error(error.message);
   process.exit(1);

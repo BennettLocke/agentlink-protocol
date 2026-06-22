@@ -37,10 +37,11 @@ Reading order:
 1. `docs/protocol-v0.2.md` - actor model, message envelope, approvals, receipts, sync, and realtime semantics.
 2. `docs/security-key-system-v0.3.md` - device keys, wrapped conversation keys, Agent crypto keys, Agent grants, ciphertext envelopes, signatures, and replay protection.
 3. `docs/compatibility-checklist.md` - what an implementation must support before claiming AgentLink compatibility.
-4. `examples/` - example payloads for human, Agent, approval, realtime, security context, and ciphertext messages.
-5. `schemas/` - JSON Schema drafts for message envelopes, actors, events, approvals, and security contexts.
-6. `sdk/javascript/` - dependency-free JavaScript SDK example for constructing and validating simple messages.
-7. `openapi/` - early HTTP API drafts.
+4. `docs/connector-boundary.md` - what public connector examples may contain, and what must stay private.
+5. `examples/` - example payloads for human, Agent, approval, realtime, security context, and ciphertext messages.
+6. `schemas/` - JSON Schema drafts for message envelopes, actors, events, approvals, and security contexts.
+7. `sdk/javascript/` - dependency-free JavaScript SDK example for constructing and validating simple messages.
+8. `openapi/` - early HTTP API drafts.
 
 ## Validate The Draft
 
@@ -100,6 +101,7 @@ docs/protocol-v0.2.md                   Latest core protocol draft
 docs/security-key-system-v0.3.md        Security and key-system draft
 docs/compatibility-checklist.md         Compatibility levels and claims
 docs/developer-quickstart.md            3/5/10 minute developer entry page
+docs/connector-boundary.md              Public connector example boundary
 docs/protocol-v0.1.md                   Previous protocol draft
 docs/migration-v0.1-to-v0.2.md          Migration notes
 docs/realtime-events.md                 Realtime event examples

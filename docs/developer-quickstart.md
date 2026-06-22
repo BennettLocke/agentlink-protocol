@@ -27,6 +27,7 @@ Read next:
 - `docs/protocol-v0.2.md` for the actor and message model.
 - `docs/security-key-system-v0.3.md` for keys, grants, ciphertext, signatures, and replay protection.
 - `docs/compatibility-checklist.md` before claiming compatibility.
+- `docs/connector-boundary.md` before publishing connector examples.
 
 ## 5 minutes: run the examples
 
@@ -115,3 +116,5 @@ AgentLink Cloud and the official AgentLink apps can remain private commercial im
 ## Suggested next file
 
 After this quickstart, read `docs/compatibility-checklist.md` and decide which level your implementation wants to claim.
+
+If you plan to publish connector examples, also read `docs/connector-boundary.md` before adding code.

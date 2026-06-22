@@ -10,6 +10,7 @@
 - Added a runnable JavaScript `send-message` example that prints an Agent-sent message and matching realtime event.
 - Added a local-only OpenClaw-style connector example that translates an AgentLink message into a mock task and returns an AgentLink reply event.
 - Added a developer quickstart and docs validation gate for the 3/5/10 minute onboarding path.
+- Added connector boundary guidance to keep public examples separate from AgentLink Cloud, private product code, and commercial connector internals.
 
 ## v0.3.0-draft - 2026-06-16
 
