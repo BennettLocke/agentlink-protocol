@@ -47,6 +47,12 @@ The check uses only Node.js built-ins. It verifies that every JSON schema and ex
 
 GitHub Actions runs the same check on every push and pull request to `main`.
 
+To see the JavaScript SDK example generate a message and realtime event:
+
+```powershell
+npm run example:js
+```
+
 ## What This Protocol Covers
 
 - Unified actor identity: `user`, `agent`, `app`, `device`, and `system`.

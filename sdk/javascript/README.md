@@ -69,3 +69,9 @@ Run the SDK example tests from the repository root:
 ```powershell
 npm run test:sdk
 ```
+
+Run the complete message/event example:
+
+```powershell
+npm run example:js
+```

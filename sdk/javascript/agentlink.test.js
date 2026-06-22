@@ -5,6 +5,7 @@ const {
   createMessageNewEvent,
   validateMessageEnvelope
 } = require("./agentlink");
+const { buildDemoPayload } = require("./examples/send-message");
 
 function test(name, fn) {
   try {
@@ -107,6 +108,17 @@ test("reports useful validation errors", () => {
   assert(errors.some((error) => error.includes("to must contain at least one actor")));
   assert(errors.some((error) => error.includes("on_behalf_of is required")));
   assert(errors.some((error) => error.includes("content.text must be a non-empty string")));
+});
+
+test("example script builds a valid message and realtime event", () => {
+  const payload = buildDemoPayload();
+
+  assert.equal(payload.message.protocol, "agentlink.message.v0.2");
+  assert.equal(payload.message.sender_mode, "agent_sent");
+  assert.equal(payload.message.on_behalf_of.actor_type, "user");
+  assert.equal(payload.event.event, "message.new");
+  assert.equal(payload.event.data.message.message_id, payload.message.message_id);
+  assert.deepEqual(validateMessageEnvelope(payload.message), []);
 });
 
 if (process.exitCode) process.exit(process.exitCode);
