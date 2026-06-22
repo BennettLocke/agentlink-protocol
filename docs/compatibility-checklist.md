@@ -105,6 +105,16 @@ Industry-standard AgentLink support.
 
 unless the implementation publishes exactly which levels and drafts it supports.
 
+## Draft Validation
+
+Before changing schemas or examples in this repository, run:
+
+```powershell
+npm test
+```
+
+This is not a full v1.0 conformance suite. It is a repository-integrity gate for the public draft: schemas must parse, local `$ref` values must resolve, and examples must continue to match the schema level they claim.
+
 ## Non-Goals
 
 Compatibility does not require:

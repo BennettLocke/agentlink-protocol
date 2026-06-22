@@ -34,6 +34,16 @@ Recommended reading order:
 5. `schemas/` - JSON Schema drafts for message envelopes, actors, events, approvals, and security contexts.
 6. `openapi/` - early HTTP API drafts.
 
+## Validate The Draft
+
+Run the lightweight compatibility check before publishing protocol changes:
+
+```powershell
+npm test
+```
+
+The check uses only Node.js built-ins. It verifies that every JSON schema and example can be parsed, local schema references resolve, and the published examples match their intended schema level.
+
 ## What This Protocol Covers
 
 - Unified actor identity: `user`, `agent`, `app`, `device`, and `system`.
@@ -83,6 +93,7 @@ schemas/message.schema.json             v0.1 message send payload schema
 examples/encrypted-message-v0.3.json    Human ciphertext message example
 examples/encrypted-agent-reply-v0.3.json Agent ciphertext reply example
 examples/                               Other example payloads
+scripts/validate-examples.js            Lightweight schema/example compatibility check
 CHANGELOG.md                            Version history
 CONTRIBUTING.md                         Contribution guide
 ROADMAP.md                              Protocol roadmap

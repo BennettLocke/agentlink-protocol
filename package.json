@@ -1,0 +1,11 @@
+{
+  "name": "agentlink-protocol",
+  "version": "0.3.0-draft",
+  "private": true,
+  "description": "Public AgentLink protocol drafts, schemas, and examples.",
+  "scripts": {
+    "test": "node scripts/validate-examples.js",
+    "validate": "node scripts/validate-examples.js"
+  },
+  "license": "Apache-2.0"
+}

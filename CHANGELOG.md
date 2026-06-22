@@ -1,5 +1,11 @@
 # Changelog
 
+## Unreleased
+
+- Added `npm test` validation for public schemas and examples.
+- Added a lightweight Node.js validator that checks JSON parsing, local schema references, and example-to-schema compatibility without adding package dependencies.
+- Documented the validation command in the README and compatibility checklist.
+
 ## v0.3.0-draft - 2026-06-16
 
 - Added security and key-system draft covering security layers, device keys, conversation key versions, wrapped keys, agent decryption grants, ciphertext content, signing, replay protection, and local encrypted cache.
