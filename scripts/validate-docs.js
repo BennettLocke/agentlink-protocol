@@ -23,10 +23,12 @@ function requireIncludes(label, content, values) {
 try {
   const readme = read("README.md");
   const quickstart = read("docs/developer-quickstart.md");
+  const compatibilityMatrix = read("docs/compatibility-matrix.md");
   const connectorBoundary = read("docs/connector-boundary.md");
 
   requireIncludes("README.md", readme, [
     "docs/developer-quickstart.md",
+    "docs/compatibility-matrix.md",
     "docs/connector-boundary.md",
     "3 minutes",
     "5 minutes",
@@ -43,8 +45,27 @@ try {
     "npm run example:openclaw",
     "Compatible with AgentLink Protocol v0.2 Level 2",
     "Implements AgentLink security/key-system v0.3 Level 4",
+    "docs/compatibility-matrix.md",
     "AgentLink Cloud",
     "private product code",
+    "docs/connector-boundary.md"
+  ]);
+
+  requireIncludes("docs/compatibility-matrix.md", compatibilityMatrix, [
+    "# AgentLink Compatibility Matrix",
+    "Client or desktop app",
+    "Relay server",
+    "Agent connector",
+    "SDK or library",
+    "Level 0",
+    "Level 1",
+    "Level 2",
+    "Level 3",
+    "Level 4",
+    "Level 5",
+    "Evidence required",
+    "Must not claim",
+    "docs/compatibility-checklist.md",
     "docs/connector-boundary.md"
   ]);
 
@@ -62,7 +83,7 @@ try {
     "private product code"
   ]);
 
-  console.log("AgentLink protocol docs validated: developer quickstart and connector boundary are linked and complete.");
+  console.log("AgentLink protocol docs validated: developer quickstart, compatibility matrix, and connector boundary are linked and complete.");
 } catch (error) {
   console.error(error.message);
   process.exit(1);
