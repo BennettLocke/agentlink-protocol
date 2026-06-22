@@ -5,6 +5,7 @@
 - Added `npm test` validation for public schemas and examples.
 - Added a lightweight Node.js validator that checks JSON parsing, local schema references, and example-to-schema compatibility without adding package dependencies.
 - Documented the validation command in the README and compatibility checklist.
+- Added GitHub Actions protocol validation for pushes and pull requests to `main`.
 
 ## v0.3.0-draft - 2026-06-16
 

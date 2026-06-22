@@ -44,6 +44,8 @@ npm test
 
 The check uses only Node.js built-ins. It verifies that every JSON schema and example can be parsed, local schema references resolve, and the published examples match their intended schema level.
 
+GitHub Actions runs the same check on every push and pull request to `main`.
+
 ## What This Protocol Covers
 
 - Unified actor identity: `user`, `agent`, `app`, `device`, and `system`.
